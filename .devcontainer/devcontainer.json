@@ -49,6 +49,7 @@
 				}
 			},
 			"extensions": [
+				"GitHub.vscode-github-actions",
 				"davidanson.vscode-markdownlint",
 				"mrmlnc.vscode-duplicate",
 				"visualstudioexptteam.vscodeintellicode",

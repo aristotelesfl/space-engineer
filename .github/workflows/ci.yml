@@ -68,7 +68,7 @@ jobs:
           --health-retries=10
 
     env:
-      DJANGO_SETTINGS_MODULE: config.settings     # ajuste se for diferente
+      DJANGO_SETTINGS_MODULE: config.settings
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
       SECRET_KEY: test-secret
       PYTHONDONTWRITEBYTECODE: "1"
