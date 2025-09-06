@@ -1,0 +1,78 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "jogo",
+	"dockerComposeFile": [
+		"../docker-compose.local.yml"
+	],
+	"init": true,
+	"mounts": [
+		{
+			"source": "./.devcontainer/bash_history",
+			"target": "/home/dev-user/.bash_history",
+			"type": "bind"
+		},
+		{
+			"source": "~/.ssh",
+			"target": "/home/dev-user/.ssh",
+			"type": "bind"
+		}
+	],
+	"overrideCommand": false,
+	"service": "django",
+	"remoteUser": "dev-user",
+	"workspaceFolder": "/app",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.formatOnSave": true,
+				"[python]": {
+					"analysis.autoImportCompletions": true,
+					"analysis.typeCheckingMode": "basic",
+					"defaultInterpreterPath": "/usr/local/bin/python",
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": "always"
+					},
+					"editor.defaultFormatter": "charliermarsh.ruff",
+					"languageServer": "Pylance",
+					"linting.enabled": true,
+					"linting.mypyEnabled": true,
+					"linting.mypyPath": "/usr/local/bin/mypy"
+				},
+				// Tailwind support for Django templates
+				"tailwindCSS.includeLanguages": {
+					"django-html": "html",
+					"html": "html"
+				},
+				"editor.quickSuggestions": {
+					"strings": true
+				}
+			},
+			"extensions": [
+				"davidanson.vscode-markdownlint",
+				"mrmlnc.vscode-duplicate",
+				"visualstudioexptteam.vscodeintellicode",
+				"visualstudioexptteam.intellicode-api-usage-examples",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff",
+				"batisteo.vscode-django",
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode",
+				"dsznajder.es7-react-js-snippets",
+				"ms-vscode.vscode-typescript-next",
+				"monosans.djlint",
+				"vivaxy.vscode-conventional-commits",
+				"donjayamanne.githistory",
+				"mhutchie.git-graph",
+				"ms-python.debugpy",
+				"humao.rest-client"
+			]
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "latest"
+		}
+	}
+}
