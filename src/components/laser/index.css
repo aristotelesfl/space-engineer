@@ -1,4 +1,0 @@
-@keyframes move-laser {
-    from { transform: translateY(0); } 
-    to { transform: translateY(-100vh); } 
-}

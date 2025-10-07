@@ -1,8 +1,0 @@
-@keyframes background-scroll {
-  from {
-    background-position-y: 0;
-  }
-  to {
-    background-position-y: 400px;
-  }
-}
