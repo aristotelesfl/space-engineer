@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { spawnEnemy } from "../../core/usecases/enemy/spawnEnemy";
 import { Enemy } from "../../core/entities/Enemy";
 import { Player } from "../../core/entities/Player";
+import GameObject = Phaser.GameObjects.GameObject;
 
 export default class GameScene extends Phaser.Scene {
     private background!: Phaser.GameObjects.TileSprite;
@@ -59,6 +60,7 @@ export default class GameScene extends Phaser.Scene {
         this.background.tilePositionY -= this.speed;
 
         this.updateEnemyPosition();
+        this.checkEnemyCollision();
     }
 
     private updateEnemyPosition(): void {
@@ -85,4 +87,42 @@ export default class GameScene extends Phaser.Scene {
         enemySprite.setData("entity", enemyEntity);
         this.enemiesGroup.add(enemySprite);
     }
+
+    private checkEnemyCollision(): void {
+        const player = this.playerEntity;
+
+        if (!player.isAlive()){
+            return;
+        }
+
+        const player_position = player.getPosition();
+        // const enemies_to_destroy: Phaser.GameObjects.Sprite[] = [];
+
+        // Itera sobre todos os inimigos ativos no grupo
+        this.enemiesGroup.getChildren().forEach((enemySprite) => {
+            const sprite = enemySprite as Phaser.GameObjects.Sprite;
+            const enemy: Enemy = sprite.getData("entity");
+
+            // Verifica se o inimigo alcançou o jogador(atingiu coordenadas muito próximas às dele)
+            if (Math.abs(enemy.x - player_position.x) < 1 && Math.abs(enemy.y - player_position.y) < 1 ) {
+
+                // se o inimigo ainda está na tela
+                // verificação evita a chamada mútipla da função
+                if (!sprite.scene){
+                    return;
+                }
+
+                player.takeDamage();
+                console.log(`Colisão detectada! Vidas restantes: ${player.getLives()}`);
+
+                this.enemiesGroup.remove(sprite, true, true);
+
+                if (!player.isAlive()){
+                    console.log('GAME OVER!');
+                    this.scene.pause();
+                }
+            }
+        });
+    }
+
 }

@@ -34,4 +34,8 @@ export class Enemy {
     getLetters(): string {
         return this.gate;
     }
+
+    getPosition(): number {
+        return this.x, this.y;
+    }
 }

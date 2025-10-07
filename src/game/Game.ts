@@ -4,7 +4,7 @@ import GameScene from "./scenes/GameScene";
 
 const Game = new Phaser.Game(PhaserConfig);
 
-const newGame = new GameScene(0.25, 5000, ["ABC", "DEF", "GHI"]);
+const newGame = new GameScene(0.75, 5000, ["ABC", "DEF", "GHI"]);
 
 Game.scene.add("GameScene", newGame, true);
 
