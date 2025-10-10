@@ -17,24 +17,21 @@ export default class GameScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("player", "assets/player.png");
         this.load.image("enemy", "assets/enemy.png");
         this.load.image("bullet", "assets/bullet.png");
-        this.load.image("background", "assets/background.png");
     }
 
     create() {
-        const screenWidth = this.scale.width;
-        const screenHeight = this.scale.height;
+        const { width, height } = this.scale;
         this.playerEntity = new Player(
             crypto.randomUUID(),
             3,
-            screenWidth / 2,
-            screenHeight - 100
+            width / 2,
+            height - 100
         );
 
         this.background = this.add
-            .tileSprite(0, 0, screenWidth, screenHeight, "background")
+            .tileSprite(0, 0, width, height, "background")
             .setOrigin(0, 0)
             .setScrollFactor(0);
 
@@ -49,7 +46,7 @@ export default class GameScene extends Phaser.Scene {
         this.time.addEvent({
             delay: this.spawnRate,
             callback: () => {
-                this.spawnEnemyOnScreen(screenWidth);
+                this.spawnEnemyOnScreen(width);
             },
             loop: true,
         });
@@ -70,9 +67,9 @@ export default class GameScene extends Phaser.Scene {
         });
     }
 
-    private spawnEnemyOnScreen(screenWidth: number): void {
+    private spawnEnemyOnScreen(width: number): void {
         const enemyEntity = spawnEnemy(
-            screenWidth,
+            width,
             this.playerEntity.getPosition(),
             this.speed,
             this.gates[Math.floor(Math.random() * this.gates.length)]
