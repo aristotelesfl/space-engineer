@@ -4,6 +4,6 @@ import "./index.css";
 import GameWrapper from "./game";
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+    document.getElementById("root") as HTMLElement
 );
 root.render(<GameWrapper />);
