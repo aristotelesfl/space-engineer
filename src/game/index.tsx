@@ -19,7 +19,7 @@ export default function GameWrapper() {
             ref={gameContainerRef}
             style={{
                 maxWidth: "100vw",
-                height: "100vh",
+                height: "100svh",
                 backgroundColor: "#0d081dff",
             }}
         />
