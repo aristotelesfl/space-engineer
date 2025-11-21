@@ -21,12 +21,10 @@ const PhaserConfig: Phaser.Types.Core.GameConfig = {
         autoCenter: Phaser.Scale.CENTER_BOTH,
         expandParent: false,
     },
-    render: {
-        pixelArt: true,
-        antialias: false,
-        roundPixels: true,
-    },
     scene: [], // As cenas serão adicionadas dinamicamente
+    audio: {
+        disableWebAudio: false,
+    },
 };
 
 export default PhaserConfig;

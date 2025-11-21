@@ -3,15 +3,19 @@ import GameScene from "../../game/scenes/GameScene";
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
     word: string;
+    originalWord: string;
     wordText: Phaser.GameObjects.Text;
     speed: number;
     isActive: boolean;
-    currentLetterIndex: number;
-    private spriteMaxLeft: string = "enemy-max-left";
+    isTargeted: boolean;
+    isStunned: boolean = false;
     private spriteLeft: string = "enemy-left";
     private spriteCenter: string = "enemy";
     private spriteRight: string = "enemy-right";
-    private spriteMaxRight: string = "enemy-max-right";
+    private targetIndicator!: Phaser.GameObjects.Graphics;
+    private originalVelocityX: number = 0;
+    private originalVelocityY: number = 0;
+    private stunDuration: number = 300;
 
     constructor(
         scene: GameScene,
@@ -22,21 +26,26 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     ) {
         super(scene, x, y, "enemy");
 
-        this.word = word.toUpperCase();
+        this.word = word.toLowerCase();
+        this.originalWord = word.toLowerCase();
         this.speed = speed;
         this.isActive = false;
-        this.currentLetterIndex = 0;
+        this.isTargeted = false;
 
-        // Adiciona o sprite ao jogo
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
-        // Configura física
         this.setCollideWorldBounds(false);
         const body = this.body as Phaser.Physics.Arcade.Body;
         body.setAllowGravity(false);
 
-        // Cria o texto da palavra acima do inimigo
+        // Indicador de alvo
+        this.targetIndicator = scene.add.graphics();
+        this.targetIndicator.lineStyle(3, 0xff0000, 1);
+        this.targetIndicator.strokeCircle(0, 0, 35);
+        this.targetIndicator.setVisible(false);
+
+        // Texto da palavra
         this.wordText = scene.add.text(0, 0, this.word, {
             fontSize: "20px",
             color: "#ffffff",
@@ -51,7 +60,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.isActive = true;
         const body = this.body as Phaser.Physics.Arcade.Body;
 
-        // Calcula o ângulo em direção ao jogador
         const angle = Phaser.Math.Angle.Between(
             this.x,
             this.y,
@@ -59,89 +67,184 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
             targetY
         );
 
-        // Define a velocidade na direção do jogador
-        body.setVelocity(
-            Math.cos(angle) * this.speed,
-            Math.sin(angle) * this.speed
-        );
+        const velocityX = Math.cos(angle) * this.speed;
+        const velocityY = Math.sin(angle) * this.speed;
 
-        // Não rotaciona mais - vamos usar sprites direcionais
-        // this.rotation = angle + Math.PI / 2;
+        body.setVelocity(velocityX, velocityY);
+
+        this.originalVelocityX = velocityX;
+        this.originalVelocityY = velocityY;
+    }
+
+    setTargeted(targeted: boolean) {
+        this.isTargeted = targeted;
+        this.targetIndicator.setVisible(targeted);
+        this.updateWordDisplay();
     }
 
     updateSpriteDirection(playerX: number) {
-        const threshold = 100;
+        const threshold = 30;
 
-        if (this.x < playerX - threshold * 2) {
-            // Inimigo está à esquerda do jogador
-            this.setTexture(this.spriteMaxRight); // Olha para direita
-        } else if (this.x < playerX - threshold) {
-            this.setTexture(this.spriteRight); // Olha para direita
-        } else if (this.x > playerX + threshold * 2) {
-            this.setTexture(this.spriteMaxLeft); // Olha para esquerda
+        if (this.x < playerX - threshold) {
+            this.setTexture(this.spriteRight);
         } else if (this.x > playerX + threshold) {
-            // Inimigo está à direita do jogador
-            this.setTexture(this.spriteLeft); // Olha para esquerda
+            this.setTexture(this.spriteLeft);
         } else {
-            // Inimigo está alinhado com o jogador
             this.setTexture(this.spriteCenter);
         }
     }
 
     updateWordDisplay() {
-        // Atualiza a cor das letras (verde para digitadas, branco para restantes)
-        let displayText = "";
-        for (let i = 0; i < this.word.length; i++) {
-            if (i < this.currentLetterIndex) {
-                displayText += `[color=#00ff00]${this.word[i]}[/color]`;
-            } else {
-                displayText += this.word[i];
-            }
+        this.wordText.setText(this.word);
+
+        if (this.isTargeted) {
+            this.wordText.setStyle({
+                fontSize: "20px",
+                color: "#ffff00",
+                backgroundColor: "#660000",
+                padding: { x: 5, y: 5 },
+            });
+        } else {
+            this.wordText.setStyle({
+                fontSize: "20px",
+                color: "#ffffff",
+                backgroundColor: "#000000",
+                padding: { x: 5, y: 5 },
+            });
         }
-
-        // Versão simplificada sem BBCode (Phaser não suporta nativamente)
-        const typedPart = this.word.substring(0, this.currentLetterIndex);
-        const remainingPart = this.word.substring(this.currentLetterIndex);
-
-        this.wordText.setText(typedPart + remainingPart);
-        this.wordText.setColor(
-            this.currentLetterIndex > 0 ? "#00ff00" : "#ffffff"
-        );
     }
 
     checkLetter(letter: string): boolean {
-        if (!this.isActive) return false;
+        if (!this.isActive || this.word.length === 0) return false;
+        return letter === this.word[0];
+    }
 
-        if (letter === this.word[this.currentLetterIndex]) {
-            this.currentLetterIndex++;
+    removeFirstLetter() {
+        if (this.word.length > 0) {
+            this.word = this.word.substring(1);
             this.updateWordDisplay();
+            console.log(`✂️ Letra removida. Palavra restante: "${this.word}"`);
+        }
+    }
 
-            if (this.currentLetterIndex >= this.word.length) {
-                // Palavra completa!
-                return true;
-            }
+    // Método chamado quando o projétil atinge a nave
+    onHit(
+        directionX: number,
+        directionY: number,
+        isLastBullet: boolean = false
+    ) {
+        // Proteção: ignora hits durante destruição
+        if (!this.active) {
+            console.log(`⚠️ Hit ignorado (nave inativa)`);
+            return;
         }
 
-        return false;
+        console.log(
+            `🎯 Nave atingida!${
+                isLastBullet ? " (ÚLTIMO HIT!)" : ""
+            } Palavra atual: "${this.word}"`
+        );
+
+        // 1. KNOCKBACK: Move 1px na direção oposta
+        const knockbackDistance = 1;
+        this.x -= directionX * knockbackDistance;
+        this.y -= directionY * knockbackDistance;
+
+        console.log(`👊 Knockback aplicado`);
+
+        // 2. STUN: Congela movimento por 300ms
+        this.applyStun();
+
+        // 3. Efeito visual de impacto (flash branco)
+        this.setTint(0xffffff);
+
+        this.scene.time.delayedCall(50, () => {
+            if (this.active) {
+                this.clearTint();
+            }
+        });
+
+        // 4. VERIFICA SE É O ÚLTIMO PROJÉTIL
+        if (isLastBullet) {
+            console.log(`💥 ÚLTIMO PROJÉTIL ACERTOU! Iniciando destruição...`);
+            this.startDestructionSequence();
+        }
+    }
+
+    // Inicia a sequência de destruição (explosão)
+    private startDestructionSequence() {
+        // Remove o círculo vermelho de alvo
+        this.setTargeted(false);
+
+        // Para o movimento completamente
+        const body = this.body as Phaser.Physics.Arcade.Body;
+        body.setVelocity(0, 0);
+
+        // Notifica a cena que esta nave deve ser destruída
+        (this.scene as GameScene).onEnemyReadyToDestroy(this);
+    }
+
+    private applyStun() {
+        if (this.isStunned) {
+            // Se já está em stun, apenas reseta o timer
+            console.log(`🥶 Stun resetado`);
+        } else {
+            this.isStunned = true;
+            console.log(`🥶 Stun aplicado (${this.stunDuration}ms)`);
+        }
+
+        const body = this.body as Phaser.Physics.Arcade.Body;
+
+        // Guarda velocidades atuais
+        if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+            this.originalVelocityX = body.velocity.x;
+            this.originalVelocityY = body.velocity.y;
+        }
+
+        // Congela movimento
+        body.setVelocity(0, 0);
+
+        // Agenda o fim do stun
+        this.scene.time.delayedCall(this.stunDuration, () => {
+            this.removeStun();
+        });
+    }
+
+    private removeStun() {
+        if (!this.active || this.isCompleted()) return;
+
+        this.isStunned = false;
+        const body = this.body as Phaser.Physics.Arcade.Body;
+
+        console.log(`✅ Stun removido - movimento retomado`);
+
+        // Restaura velocidades originais
+        body.setVelocity(this.originalVelocityX, this.originalVelocityY);
     }
 
     isCompleted(): boolean {
-        return this.currentLetterIndex >= this.word.length;
+        return this.word.length === 0;
     }
 
     getNextLetter(): string {
-        return this.word[this.currentLetterIndex] || "";
+        return this.word.length > 0 ? this.word[0] : "";
+    }
+
+    getDistanceToPoint(x: number, y: number): number {
+        return Phaser.Math.Distance.Between(this.x, this.y, x, y);
     }
 
     preUpdate(time: number, delta: number) {
         super.preUpdate(time, delta);
 
-        // Atualiza posição do texto para seguir o inimigo
         if (this.wordText) {
             this.wordText.setPosition(this.x, this.y - 40);
         }
 
-        // Remove se sair da tela
+        if (this.targetIndicator) {
+            this.targetIndicator.setPosition(this.x, this.y);
+        }
+
         if (this.y > (this.scene as GameScene).scale.height + 50) {
             this.destroy();
         }
@@ -150,6 +253,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     destroy(fromScene?: boolean) {
         if (this.wordText) {
             this.wordText.destroy();
+        }
+        if (this.targetIndicator) {
+            this.targetIndicator.destroy();
         }
         super.destroy(fromScene);
     }
