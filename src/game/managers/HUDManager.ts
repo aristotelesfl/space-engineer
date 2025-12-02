@@ -35,7 +35,13 @@ export class HUDManager {
 
         this.bottomTextLayer = this.scene.add.graphics();
         this.bottomTextLayer.fillStyle(0x111b2d, 1);
-        this.bottomTextLayer.fillRoundedRect(20, height - 60, 500, 50, 20);
+        this.bottomTextLayer.fillRoundedRect(
+            20,
+            height - 60,
+            width - 40,
+            50,
+            20
+        );
         this.bottomTextLayer.setDepth(1000);
         this.bottomTextLayer.setDepth(1000);
 
@@ -64,7 +70,7 @@ export class HUDManager {
             40,
             questionText || "O que são requisitos funcionais?",
             {
-                fontSize: "18px",
+                fontSize: "30px",
                 color: "#ffffff",
                 fontFamily: "monospace",
                 align: "center",
@@ -76,17 +82,16 @@ export class HUDManager {
 
         // Response Text
         this.responseTextDisplay = this.scene.add.text(
-            40,
+            width / 2,
             height - 40,
             responseText || "Complete as lacunas coletando powerups.",
             {
-                font: "sans-serif",
-                fontSize: "50px",
+                fontSize: "20px",
                 color: "#B1A12B",
                 fontFamily: "monospace",
-                align: "left",
+                align: "center",
                 lineSpacing: 4,
-                wordWrap: { width: width - 200 },
+                wordWrap: { width: width - 100 },
             }
         );
         this.responseTextDisplay.setOrigin(0, 0.5);
@@ -94,8 +99,8 @@ export class HUDManager {
 
         // Score
         this.scoreText = this.scene.add.text(
-            width - 20,
-            height - 40,
+            width - 40,
+            height - 130,
             `Score: 0`,
             {
                 fontSize: "18px",

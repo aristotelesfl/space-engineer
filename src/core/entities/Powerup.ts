@@ -115,7 +115,7 @@ export class Powerup extends Phaser.Physics.Arcade.Sprite {
 
     updateWordDisplay() {
         if (this.wordText && this.wordText.active) {
-            this.wordText.setText(this.word.toUpperCase());
+            this.wordText.setText(this.word.toLowerCase());
         }
     }
 
