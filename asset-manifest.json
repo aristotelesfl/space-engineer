@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/space-engineer/static/css/main.e6c13ad2.css",
-    "main.js": "/space-engineer/static/js/main.cf97669d.js",
+    "main.js": "/space-engineer/static/js/main.ae1661ef.js",
     "index.html": "/space-engineer/index.html",
     "main.e6c13ad2.css.map": "/space-engineer/static/css/main.e6c13ad2.css.map",
-    "main.cf97669d.js.map": "/space-engineer/static/js/main.cf97669d.js.map"
+    "main.ae1661ef.js.map": "/space-engineer/static/js/main.ae1661ef.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.cf97669d.js"
+    "static/js/main.ae1661ef.js"
   ]
 }
