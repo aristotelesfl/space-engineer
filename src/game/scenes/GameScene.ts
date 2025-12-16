@@ -9,6 +9,7 @@ import { HUDManager } from "../managers/HUDManager";
 import { PowerupManager } from "../managers/PowerupManager";
 import { ScreenManager } from "../managers/ScreenManager";
 import { InputManager } from "../managers/InputManager";
+import { RankingManager } from "../managers/RankingManager";
 import { ResponseTextManager } from "../managers/ResponseTextManager";
 
 export default class GameScene extends Phaser.Scene {
@@ -48,6 +49,7 @@ export default class GameScene extends Phaser.Scene {
         question: string,
         spawnInterval: number,
         sceneKey: string = "GameScene",
+        score: number = 0, // ✅ Parâmetro do construtor
         responseText?: string,
         correctWords?: string[]
     ) {
@@ -57,6 +59,7 @@ export default class GameScene extends Phaser.Scene {
         this.wordList = wordList;
         this.question = question;
         this.spawnInterval = spawnInterval;
+        this.score = score; // ✅ Usa o score passado
 
         if (responseText && correctWords?.length) {
             this.responseTextManager = new ResponseTextManager(
@@ -68,6 +71,12 @@ export default class GameScene extends Phaser.Scene {
 
     init(data: any) {
         this.resetGameState();
+
+        // ✅ Recupera o score DEPOIS do reset
+        if (data?.score !== undefined) {
+            this.score = data.score;
+        }
+
         if (data?.responseText && data?.correctWords) {
             this.responseTextManager = new ResponseTextManager(
                 data.responseText,
@@ -116,6 +125,7 @@ export default class GameScene extends Phaser.Scene {
             this.responseTextManager?.getCurrentText() || "",
             this.player
         );
+        this.hudManager.updateScore(this.score);
 
         // 3. Setup Funcionalidades Específicas
         if (this.responseTextManager) {
@@ -271,7 +281,32 @@ export default class GameScene extends Phaser.Scene {
 
     private onPowerupDestroyed(powerup: Powerup) {
         this.powerupManager?.destroyPowerup(powerup);
-        this.cameras.main.flash(100, 255, 100, 0, false);
+        this.addScore(-50);
+        this.cameras.main.flash(100, 255, 0, 0, false);
+        this.showFloatingText(powerup.x, powerup.y, "-50", "#ff0000");
+    }
+
+    private showFloatingText(
+        x: number,
+        y: number,
+        message: string,
+        color: string
+    ) {
+        const text = this.add
+            .text(x, y, message, {
+                fontSize: "24px",
+                color: color,
+                fontStyle: "bold",
+            })
+            .setOrigin(0.5);
+
+        this.tweens.add({
+            targets: text,
+            y: y - 50,
+            alpha: 0,
+            duration: 800,
+            onComplete: () => text.destroy(),
+        });
     }
 
     public onEnemyReadyToDestroy(enemy: Enemy) {
@@ -360,7 +395,9 @@ export default class GameScene extends Phaser.Scene {
                 this.responseTextManager?.getCurrentText() || "",
                 this.responseTextManager?.getCollectedWords() || [],
                 isLastLevel,
-                () => nextLevelKey && this.transitionToScene(nextLevelKey), // Next Level
+                () =>
+                    nextLevelKey &&
+                    this.transitionToScene(nextLevelKey, this.score), // Next Level
                 () => this.returnToMenu() // Menu
             );
         });
@@ -372,30 +409,56 @@ export default class GameScene extends Phaser.Scene {
         this.audioManager.stopBGM();
         this.cleanupGameplayResources();
 
-        this.screenManager.showGameOver(
-            this.score,
-            () => this.restartLevel(),
-            () => this.returnToMenu()
-        );
+        // ✅ NOVO: Verifica se é um high score
+        const isHighScore = RankingManager.isHighScore(this.score);
+
+        if (isHighScore) {
+            // Vai para tela de inserir nome
+            this.transitionToNameInput();
+        } else {
+            // Game Over normal
+            this.screenManager.showGameOver(
+                this.score,
+                () => this.restartLevel(),
+                () => this.returnToMenu()
+            );
+        }
+    }
+
+    // ✅ NOVO MÉTODO
+    private transitionToNameInput() {
+        this.cameras.main.fadeOut(500, 0, 0, 0);
+        this.cameras.main.once("camerafadeoutcomplete", () => {
+            this.cleanupScene();
+            this.scene.start("NameInputScene", {
+                score: this.score,
+                levelKey: this.scene.key,
+                onSubmit: () => {
+                    // Callback após submeter o nome
+                    console.log("Nome submetido com sucesso!");
+                },
+            });
+        });
     }
 
     // --- Navegação e Cleanup ---
 
-    private transitionToScene(sceneKey: string) {
+    private transitionToScene(sceneKey: string, score: number) {
         this.audioManager.stopBGM();
         this.cameras.main.fadeOut(500, 0, 0, 0);
         this.cameras.main.once("camerafadeoutcomplete", () => {
             this.cleanupScene();
-            this.scene.start(sceneKey);
+            // Passa o data adiante
+            this.scene.start(sceneKey, { score });
         });
     }
 
     private restartLevel() {
-        this.transitionToScene(this.scene.key); // Reinicia a mesma cena
+        this.transitionToScene(this.scene.key, this.score); // Reinicia a mesma cena
     }
 
     private returnToMenu() {
-        this.transitionToScene("MenuScene");
+        this.transitionToScene("MenuScene", this.score);
     }
 
     private cleanupGameplayResources() {

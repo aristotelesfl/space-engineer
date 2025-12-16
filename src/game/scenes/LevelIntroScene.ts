@@ -4,6 +4,7 @@ export default class LevelIntroScene extends Phaser.Scene {
     private titleText: string;
     private subtitleText: string;
     private questionText: string;
+    private currentScore: number = 0;
     private targetSceneKey: string;
     private targetSceneData?: any;
 
@@ -14,6 +15,7 @@ export default class LevelIntroScene extends Phaser.Scene {
         titleText: string,
         subtitleText: string,
         questionText: string,
+        currentScore: number = 0, // ✅ Adicionado parâmetro
         targetSceneKey: string,
         sceneKey?: string,
         targetSceneData?: any
@@ -22,8 +24,16 @@ export default class LevelIntroScene extends Phaser.Scene {
         this.titleText = titleText;
         this.subtitleText = subtitleText;
         this.questionText = questionText;
+        this.currentScore = currentScore; // ✅ Inicializado
         this.targetSceneKey = targetSceneKey;
         this.targetSceneData = targetSceneData;
+    }
+
+    init(data: any) {
+        // ✅ Atualiza o score se vier nos dados
+        if (data?.score !== undefined) {
+            this.currentScore = data.score;
+        }
     }
 
     create() {
@@ -138,7 +148,12 @@ export default class LevelIntroScene extends Phaser.Scene {
         this.cameras.main.fadeOut(300);
 
         this.cameras.main.once("camerafadeoutcomplete", () => {
-            this.scene.start(this.targetSceneKey, this.targetSceneData);
+            const nextLevelData = {
+                ...this.targetSceneData,
+                score: this.currentScore,
+            };
+
+            this.scene.start(this.targetSceneKey, nextLevelData);
         });
     }
 }
