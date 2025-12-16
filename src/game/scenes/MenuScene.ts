@@ -14,7 +14,7 @@ export default class MenuScene extends Phaser.Scene {
 
     preload() {
         AudioManager.preload(this);
-        this.load.image("player", "assets/player.png");
+        this.load.image("player", "assets/Player.png");
     }
 
     create() {
