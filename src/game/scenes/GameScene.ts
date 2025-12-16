@@ -87,17 +87,16 @@ export default class GameScene extends Phaser.Scene {
 
     preload() {
         // Carregamento dos Sprites
-        this.load.image("player", "assets/player.png");
-        this.load.image("enemy", "assets/enemy.png");
-        this.load.image("enemy-left", "assets/enemy-left.png");
-        this.load.image("enemy-right", "assets/enemy-right.png");
-        this.load.image("bullet", "assets/bullet.png");
-        this.load.image("background", "assets/background.png");
-
+        this.load.image("player", "assets/Player.png");
+        this.load.image("enemy", "assets/Enemy.png");
+        this.load.image("enemy-left", "assets/Enemy-left.png");
+        this.load.image("enemy-right", "assets/Enemy-right.png");
+        this.load.image("bullet", "assets/Bullet.png");
+        this.load.image("background", "assets/Background.png");
         // HUD e UI
         this.load.image("bottomHudLayer", "assets/bottomHudLayer.png");
         this.load.image("topHudLayer", "assets/topHudLayer.png");
-        this.load.image("powerup", "assets/powerup.png");
+        this.load.image("powerup", "assets/Powerup.png");
 
         // Carregamento de Áudio (via Manager)
         AudioManager.preload(this);
