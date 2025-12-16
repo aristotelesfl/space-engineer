@@ -7,7 +7,6 @@ export default class MenuScene extends Phaser.Scene {
     private title!: Phaser.GameObjects.Text;
     private subtitle!: Phaser.GameObjects.Text;
     private playerShip!: Phaser.GameObjects.Sprite;
-    private currentMenu: "main" | "levels" = "main";
 
     constructor() {
         super("MenuScene");
@@ -73,72 +72,59 @@ export default class MenuScene extends Phaser.Scene {
     }
 
     private showMainMenu() {
-        this.currentMenu = "main";
         this.clearMenuItems();
 
         const menuOptions = [
-            { text: "Novo Jogo", action: () => this.showLevelSelection() },
             {
-                text: "Continue",
-                action: () => this.showMessage("Continue: Not implemented"),
+                text: "Novo Jogo",
+                action: () => this.startNewGame(),
             },
             {
                 text: "Ranking",
-                action: () => this.showMessage("Ranking: Not implemented"),
+                action: () => this.showRanking(),
             },
             {
                 text: "Créditos",
-                action: () => this.showMessage("Credits: Not implemented"),
+                action: () => this.showCredits(),
             },
         ];
 
         this.createMenuItems(menuOptions);
     }
 
-    private showLevelSelection() {
-        this.currentMenu = "levels";
-        this.clearMenuItems();
+    private startNewGame() {
+        console.log("🎮 Iniciando novo jogo...");
 
-        const levelOptions = [
-            {
-                text: "Level 1 - Easy",
-                description: "Speed: 120 | Enemies: 3 | Spawn: 2s",
-                action: () => this.startLevelWithIntro("IntroLevel1"),
-            },
-            {
-                text: "Level 2 - Medium",
-                description: "Speed: 180 | Enemies: 5 | Spawn: 1.5s",
-                action: () => this.startLevelWithIntro("IntroLevel2"),
-            },
-            {
-                text: "Level 3 - Hard",
-                description: "Speed: 250 | Enemies: 7 | Spawn: 1s",
-                action: () => this.startLevelWithIntro("IntroLevel3"),
-            },
-            {
-                text: "Boss Level - Extreme",
-                description: "Speed: 300 | Enemies: 10 | Spawn: 0.8s",
-                action: () => this.startLevelWithIntro("IntroBoss"),
-            },
-            {
-                text: "← Back to Main Menu",
-                description: "",
-                action: () => this.showMainMenu(),
-            },
-        ];
+        this.cameras.main.fadeOut(500, 0, 0, 0);
 
-        this.createMenuItems(levelOptions);
+        this.cameras.main.once("camerafadeoutcomplete", () => {
+            // ✅ Inicia direto no primeiro nível (com score 0)
+            this.scene.start("IntroLevel1", { score: 0 });
+        });
+    }
+
+    private showRanking() {
+        this.cameras.main.fadeOut(300);
+        this.cameras.main.once("camerafadeoutcomplete", () => {
+            this.scene.start("RankingScene", { returnToMenu: true });
+        });
+    }
+
+    private showCredits() {
+        this.cameras.main.fadeOut(300);
+        this.cameras.main.once("camerafadeoutcomplete", () => {
+            this.scene.start("CreditsScene");
+        });
     }
 
     private createMenuItems(
         options: Array<{
             text: string;
-            description?: string;
             action: () => void;
         }>
     ) {
         const { width, height } = this.scale;
-        const startY = height - 280;
+        const startY = height - 200;
         const spacing = 50;
 
         options.forEach((option, index) => {
@@ -155,25 +141,6 @@ export default class MenuScene extends Phaser.Scene {
 
             menuItem.setOrigin(0.5);
             menuItem.setInteractive({ useHandCursor: true });
-
-            // Adiciona descrição do nível se disponível
-            if (option.description) {
-                const desc = this.add.text(
-                    width / 2,
-                    startY + index * spacing + 22,
-                    option.description,
-                    {
-                        fontSize: "12px",
-                        color: "#666666",
-                        fontFamily: "Arial, sans-serif",
-                    }
-                );
-                desc.setOrigin(0.5);
-                desc.setAlpha(0);
-
-                // Armazena a descrição no menuItem para controle
-                (menuItem as any).descriptionText = desc;
-            }
 
             menuItem.on("pointerover", () => {
                 this.selectMenuItem(index);
@@ -201,10 +168,6 @@ export default class MenuScene extends Phaser.Scene {
 
     private clearMenuItems() {
         this.menuItems.forEach((item) => {
-            // Remove descrição se existir
-            if ((item as any).descriptionText) {
-                (item as any).descriptionText.destroy();
-            }
             item.destroy();
         });
         this.menuItems = [];
@@ -219,11 +182,6 @@ export default class MenuScene extends Phaser.Scene {
                 fontSize: "24px",
                 color: "#aa6633",
             });
-
-            // Esconde descrição anterior
-            if ((previousItem as any).descriptionText) {
-                (previousItem as any).descriptionText.setAlpha(0);
-            }
         }
 
         // Atualiza índice
@@ -235,15 +193,6 @@ export default class MenuScene extends Phaser.Scene {
             fontSize: "24px",
             color: "#ffaa66",
         });
-
-        // Mostra descrição do item atual
-        if ((currentItem as any).descriptionText) {
-            this.tweens.add({
-                targets: (currentItem as any).descriptionText,
-                alpha: 0.8,
-                duration: 200,
-            });
-        }
     }
 
     private selectPrevious() {
@@ -278,26 +227,6 @@ export default class MenuScene extends Phaser.Scene {
         });
     }
 
-    private startLevelWithIntro(introKey: string) {
-        console.log(`🎬 Iniciando introdução: ${introKey}...`);
-
-        this.cameras.main.fadeOut(500, 0, 0, 0);
-
-        this.cameras.main.once("camerafadeoutcomplete", () => {
-            this.scene.start(introKey);
-        });
-    }
-
-    private startLevel(levelKey: string) {
-        console.log(`🎮 Iniciando ${levelKey}...`);
-
-        this.cameras.main.fadeOut(500, 0, 0, 0);
-
-        this.cameras.main.once("camerafadeoutcomplete", () => {
-            this.scene.start(levelKey);
-        });
-    }
-
     private setupKeyboardInput() {
         if (!this.input.keyboard) return;
 
@@ -316,13 +245,6 @@ export default class MenuScene extends Phaser.Scene {
         this.input.keyboard.on("keydown-SPACE", () => {
             this.confirmSelection();
         });
-
-        // ESC para voltar
-        this.input.keyboard.on("keydown-ESC", () => {
-            if (this.currentMenu === "levels") {
-                this.showMainMenu();
-            }
-        });
     }
 
     private updateFooter() {
@@ -333,10 +255,7 @@ export default class MenuScene extends Phaser.Scene {
         }
 
         const { width, height } = this.scale;
-        const footerText =
-            this.currentMenu === "levels"
-                ? "↑↓ Navigate | ENTER Select | ESC Back"
-                : "↑↓ Navigate | ENTER Select";
+        const footerText = "↑↓ Navigate | ENTER Select";
 
         const footer = this.add.text(width / 2, height - 20, footerText, {
             fontSize: "12px",

@@ -7,7 +7,7 @@ export class AudioManager {
     private deathSound: Phaser.Sound.BaseSound | null = null;
 
     // Configurações de volume
-    private static readonly BGM_VOLUME = 0.3;
+    private static readonly BGM_VOLUME = 0.2;
     private static readonly SHOOT_VOLUME = 0.5;
     private static readonly DEATH_VOLUME = 0.6;
     private static readonly FADE_DURATION = 300;
