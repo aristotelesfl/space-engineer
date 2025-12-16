@@ -1,0 +1,98 @@
+{
+    "levels": [
+        {
+            "key": "Level1",
+            "wordList": [
+                "requisito",
+                "funcional",
+                "sistema",
+                "usuario",
+                "processo",
+                "dados",
+                "interface",
+                "relatorio"
+            ],
+            "enemyConfig": {
+                "speed": 80,
+                "spawnLimit": 3,
+                "spawnRate": 3000
+            },
+            "response": "Requisitos funcionais descrevem ________ que o sistema deve executar.",
+            "responseWord": ["funcoes"],
+            "introConfig": {
+                "title": "NIVEL 1 - Engenharia de Requisitos",
+                "description": "Define e documenta o que o sistema deve \nfazer e como deve se comportar.",
+                "question": "O que sao requisitos funcionais?"
+            }
+        },
+        {
+            "key": "Level2",
+            "wordList": [
+                "desempenho",
+                "seguranca",
+                "usabilidade",
+                "confiabilidade",
+                "escalabilidade",
+                "disponibilidade"
+            ],
+            "enemyConfig": {
+                "speed": 80,
+                "spawnLimit": 5,
+                "spawnRate": 3000
+            },
+            "response": "Requisitos nao funcionais incluem caracteristicas como ________, ________ e ________.",
+            "responseWord": ["desempenho", "seguranca", "usabilidade"],
+            "introConfig": {
+                "title": "NIVEL 2 - Requisitos Nao Funcionais",
+                "description": "Descrevem propriedades e restricoes do sistema.",
+                "question": "Quais sao exemplos de requisitos nao funcionais?"
+            }
+        },
+        {
+            "key": "Level3",
+            "wordList": [
+                "teste",
+                "unitario",
+                "integracao",
+                "regressao",
+                "validacao",
+                "verificacao"
+            ],
+            "enemyConfig": {
+                "speed": 250,
+                "spawnLimit": 7,
+                "spawnRate": 1000
+            },
+            "response": "Testes de software garantem a ________ e identificam ________.",
+            "responseWord": ["qualidade", "defeitos"],
+            "introConfig": {
+                "title": "NIVEL 3 - TESTES DE SOFTWARE",
+                "description": "Garanta a qualidade!",
+                "question": "Desafio intenso - Complete a frase sobre testes"
+            }
+        },
+        {
+            "key": "BossLevel",
+            "wordList": [
+                "arquitetura",
+                "componente",
+                "modularidade",
+                "acoplamento",
+                "coesao",
+                "padrao"
+            ],
+            "enemyConfig": {
+                "speed": 300,
+                "spawnLimit": 10,
+                "spawnRate": 800
+            },
+            "response": "Uma boa arquitetura promove ________ e minimiza o ________.",
+            "responseWord": ["manutencao", "acoplamento"],
+            "introConfig": {
+                "title": "NIVEL FINAL - ARQUITETURA",
+                "description": "Demonstre seu conhecimento!",
+                "question": "Teste final - Arquitetura de Software"
+            }
+        }
+    ]
+}
