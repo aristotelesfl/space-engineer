@@ -3,95 +3,920 @@
         {
             "key": "Level1",
             "wordList": [
-                "requisito",
-                "funcional",
+                "componentes",
+                "relacoes",
+                "decisoes",
+                "abstracao",
                 "sistema",
-                "usuario",
-                "processo",
-                "dados",
-                "interface",
-                "relatorio"
+                "design"
+            ],
+            "enemyConfig": {
+                "speed": 60,
+                "spawnLimit": 2,
+                "spawnRate": 3000
+            },
+            "response": "A arquitetura define a ________ fundamental de um sistema de software.",
+            "responseWord": ["estrutura"],
+            "introConfig": {
+                "title": "Conceitos Básicos",
+                "description": "Entendendo o alicerce do software.",
+                "question": "O que a arquitetura define?"
+            }
+        },
+        {
+            "key": "Level2",
+            "wordList": [
+                "entidade",
+                "relacionamento",
+                "atributo",
+                "estrangeira",
+                "primaria",
+                "tabela"
+            ],
+            "enemyConfig": {
+                "speed": 70,
+                "spawnLimit": 3,
+                "spawnRate": 3000
+            },
+            "response": "No modelo relacional, uma ________ identifica unicamente um registro.",
+            "responseWord": ["chave"],
+            "introConfig": {
+                "title": "Modelagem de Dados",
+                "description": "Estruturando o banco de dados.",
+                "question": "Como identificamos registros únicos?"
+            }
+        },
+        {
+            "key": "Level3",
+            "wordList": [
+                "normalizacao",
+                "anomalia",
+                "atomicidade",
+                "consistencia",
+                "forma",
+                "normal"
             ],
             "enemyConfig": {
                 "speed": 80,
                 "spawnLimit": 3,
                 "spawnRate": 3000
             },
-            "response": "Requisitos funcionais descrevem ________ que o sistema deve executar.",
-            "responseWord": ["funcoes"],
+            "response": "A normalização visa minimizar a ________ de dados no banco.",
+            "responseWord": ["redundancia"],
             "introConfig": {
-                "title": "NIVEL 1 - Engenharia de Requisitos",
-                "description": "Define e documenta o que o sistema deve \nfazer e como deve se comportar.",
-                "question": "O que sao requisitos funcionais?"
+                "title": "Normalização",
+                "description": "Otimizando o armazenamento de dados.",
+                "question": "Qual o objetivo da normalização?"
             }
         },
         {
-            "key": "Level2",
+            "key": "Level4",
             "wordList": [
-                "desempenho",
-                "seguranca",
-                "usabilidade",
-                "confiabilidade",
-                "escalabilidade",
-                "disponibilidade"
+                "model",
+                "controller",
+                "apresentacao",
+                "logica",
+                "interacao",
+                "separacao"
+            ],
+            "enemyConfig": {
+                "speed": 80,
+                "spawnLimit": 4,
+                "spawnRate": 2400
+            },
+            "response": "No padrão MVC, a ________ exibe os dados ao usuário.",
+            "responseWord": ["view"],
+            "introConfig": {
+                "title": "Padrão MVC",
+                "description": "Padrão arquitetural de interface.",
+                "question": "Quem mostra os dados no MVC?"
+            }
+        },
+        {
+            "key": "Level5",
+            "wordList": [
+                "microservicos",
+                "monolito",
+                "container",
+                "distribuido",
+                "api",
+                "comunicacao"
             ],
             "enemyConfig": {
                 "speed": 80,
                 "spawnLimit": 5,
-                "spawnRate": 3000
+                "spawnRate": 2800
             },
-            "response": "Requisitos nao funcionais incluem caracteristicas como ________, ________ e ________.",
-            "responseWord": ["desempenho", "seguranca", "usabilidade"],
+            "response": "Microserviços são serviços pequenos e ________.",
+            "responseWord": ["independentes"],
             "introConfig": {
-                "title": "NIVEL 2 - Requisitos Nao Funcionais",
-                "description": "Descrevem propriedades e restricoes do sistema.",
-                "question": "Quais sao exemplos de requisitos nao funcionais?"
+                "title": "Arquitetura Distribuída",
+                "description": "Quebrando o monólito.",
+                "question": "Como são os microserviços?"
             }
         },
         {
-            "key": "Level3",
+            "key": "Level6",
             "wordList": [
-                "teste",
-                "unitario",
-                "integracao",
-                "regressao",
-                "validacao",
-                "verificacao"
+                "singleton",
+                "global",
+                "unico",
+                "criacional",
+                "estatico",
+                "objeto"
             ],
             "enemyConfig": {
-                "speed": 250,
-                "spawnLimit": 7,
-                "spawnRate": 1000
+                "speed": 80,
+                "spawnLimit": 5,
+                "spawnRate": 2600
             },
-            "response": "Testes de software garantem a ________ e identificam ________.",
-            "responseWord": ["qualidade", "defeitos"],
+            "response": "O padrão Singleton garante apenas uma ________ de uma classe.",
+            "responseWord": ["instancia"],
             "introConfig": {
-                "title": "NIVEL 3 - TESTES DE SOFTWARE",
-                "description": "Garanta a qualidade!",
-                "question": "Desafio intenso - Complete a frase sobre testes"
+                "title": "Design Patterns (Criação)",
+                "description": "Controlando a criação de objetos.",
+                "question": "O que o Singleton restringe?"
             }
         },
         {
-            "key": "BossLevel",
+            "key": "Level7",
+            "wordList": [
+                "observer",
+                "evento",
+                "notificacao",
+                "assinante",
+                "mudanca",
+                "comportamental"
+            ],
+            "enemyConfig": {
+                "speed": 85,
+                "spawnLimit": 5,
+                "spawnRate": 2600
+            },
+            "response": "O Observer notifica objetos sobre mudanças de ________.",
+            "responseWord": ["estado"],
+            "introConfig": {
+                "title": "Design Patterns (Comportamental)",
+                "description": "Gerenciando comunicações.",
+                "question": "O que o Observer monitora?"
+            }
+        },
+        {
+            "key": "Level8",
+            "wordList": [
+                "solid",
+                "responsabilidade",
+                "aberto",
+                "fechado",
+                "substituicao",
+                "interface",
+                "inversao"
+            ],
+            "enemyConfig": {
+                "speed": 85,
+                "spawnLimit": 5,
+                "spawnRate": 2600
+            },
+            "response": "Em SOLID, 'S' é Responsabilidade ________.",
+            "responseWord": ["unica"],
+            "introConfig": {
+                "title": "Princípios SOLID",
+                "description": "Boas práticas de orientação a objetos.",
+                "question": "Qual o primeiro princípio do SOLID?"
+            }
+        },
+        {
+            "key": "Level9",
+            "wordList": [
+                "rest",
+                "recurso",
+                "json",
+                "stateless",
+                "endpoint",
+                "verbo"
+            ],
+            "enemyConfig": {
+                "speed": 100,
+                "spawnLimit": 5,
+                "spawnRate": 2500
+            },
+            "response": "APIs RESTful utilizam métodos do protocolo ________.",
+            "responseWord": ["http"],
+            "introConfig": {
+                "title": "APIs e Integração",
+                "description": "Conectando sistemas.",
+                "question": "Qual protocolo base do REST?"
+            }
+        },
+        {
+            "key": "level10",
+            "wordList": [
+                "coesao",
+                "manutencibilidade",
+                "escalabilidade",
+                "resiliencia",
+                "modularidade",
+                "complexidade"
+            ],
+            "enemyConfig": {
+                "speed": 100,
+                "spawnLimit": 6,
+                "spawnRate": 2500
+            },
+            "response": "Busca-se alta coesão e baixo ________.",
+            "responseWord": ["acoplamento"],
+            "introConfig": {
+                "title": "Qualidade Arquitetural",
+                "description": "O mantra da boa arquitetura.",
+                "question": "Qual o objetivo final?"
+            }
+        },
+        {
+            "key": "Level11",
+            "wordList": [
+                "consistencia",
+                "disponibilidade",
+                "teorema",
+                "distribuido",
+                "limite",
+                "escolha"
+            ],
+            "enemyConfig": {
+                "speed": 85,
+                "spawnLimit": 3,
+                "spawnRate": 2900
+            },
+            "response": "O Teorema CAP diz que é impossível ter Consistência, Disponibilidade e Tolerância a ________ simultaneamente.",
+            "responseWord": ["particao"],
+            "introConfig": {
+                "title": "Teorema CAP",
+                "description": "Desafios de sistemas distribuídos.",
+                "question": "O que não podemos ter ao mesmo tempo?"
+            }
+        },
+        {
+            "key": "Level12",
+            "wordList": [
+                "atomicidade",
+                "isolamento",
+                "durabilidade",
+                "transacao",
+                "commit",
+                "rollback",
+                "integridade"
+            ],
+            "enemyConfig": {
+                "speed": 95,
+                "spawnLimit": 4,
+                "spawnRate": 2700
+            },
+            "response": "As propriedades ACID garantem a confiabilidade das ________ no banco de dados.",
+            "responseWord": ["transacoes"],
+            "introConfig": {
+                "title": "Propriedades ACID",
+                "description": "Transações seguras.",
+                "question": "O que o ACID protege?"
+            }
+        },
+        {
+            "key": "Level13",
+            "wordList": [
+                "horizontal",
+                "hardware",
+                "recurso",
+                "maquina",
+                "carga",
+                "expansao"
+            ],
+            "enemyConfig": {
+                "speed": 105,
+                "spawnLimit": 4,
+                "spawnRate": 2500
+            },
+            "response": "Escalabilidade ________ envolve adicionar mais potência (CPU/RAM) a uma única máquina.",
+            "responseWord": ["vertical"],
+            "introConfig": {
+                "title": "Escalabilidade",
+                "description": "Crescendo o sistema.",
+                "question": "Como chamamos o upgrade de máquina?"
+            }
+        },
+        {
+            "key": "Level14",
+            "wordList": [
+                "strategy",
+                "algoritmo",
+                "familia",
+                "interface",
+                "comportamento",
+                "troca",
+                "runtime"
+            ],
+            "enemyConfig": {
+                "speed": 115,
+                "spawnLimit": 5,
+                "spawnRate": 2300
+            },
+            "response": "O padrão Strategy permite que uma família de ________ seja intercambiável.",
+            "responseWord": ["algoritmos"],
+            "introConfig": {
+                "title": "Padrão Strategy",
+                "description": "Flexibilidade de algoritmos.",
+                "question": "O que o Strategy encapsula?"
+            }
+        },
+        {
+            "key": "Level15",
+            "wordList": [
+                "factory",
+                "metodo",
+                "subclasse",
+                "produto",
+                "concreto",
+                "abstrato"
+            ],
+            "enemyConfig": {
+                "speed": 125,
+                "spawnLimit": 5,
+                "spawnRate": 2100
+            },
+            "response": "O Factory Method delega a ________ de objetos para as subclasses.",
+            "responseWord": ["criacao"],
+            "introConfig": {
+                "title": "Padrão Factory",
+                "description": "Padrões de criação.",
+                "question": "O que o Factory delega?"
+            }
+        },
+        {
+            "key": "Level16",
+            "wordList": [
+                "gateway",
+                "rota",
+                "proxy",
+                "autenticacao",
+                "filtro",
+                "backend"
+            ],
+            "enemyConfig": {
+                "speed": 145,
+                "spawnLimit": 6,
+                "spawnRate": 1900
+            },
+            "response": "O API Gateway funciona como um ponto de ________ único para os clientes.",
+            "responseWord": ["entrada"],
+            "introConfig": {
+                "title": "API Gateway",
+                "description": "Gerenciando o tráfego.",
+                "question": "Qual a função do Gateway?"
+            }
+        },
+        {
+            "key": "Level17",
+            "wordList": [
+                "container",
+                "docker",
+                "imagem",
+                "isolamento",
+                "leve",
+                "kernel"
+            ],
+            "enemyConfig": {
+                "speed": 165,
+                "spawnLimit": 6,
+                "spawnRate": 1700
+            },
+            "response": "Containers empacotam código e dependências para garantir a ________.",
+            "responseWord": ["portabilidade"],
+            "introConfig": {
+                "title": "Conteinerização",
+                "description": "Empacotando software.",
+                "question": "Qual a maior vantagem do Docker?"
+            }
+        },
+        {
+            "key": "Level18",
+            "wordList": [
+                "cache",
+                "memoria",
+                "leitura",
+                "redis",
+                "rapido",
+                "temporario"
+            ],
+            "enemyConfig": {
+                "speed": 185,
+                "spawnLimit": 7,
+                "spawnRate": 1500
+            },
+            "response": "O uso de cache visa reduzir a ________ no acesso aos dados frequentes.",
+            "responseWord": ["latencia"],
+            "introConfig": {
+                "title": "Performance e Caching",
+                "description": "Acelerando respostas.",
+                "question": "O que o cache reduz?"
+            }
+        },
+        {
+            "key": "Level19",
+            "wordList": [
+                "ci",
+                "cd",
+                "pipeline",
+                "automacao",
+                "deploy",
+                "integracao",
+                "continuo"
+            ],
+            "enemyConfig": {
+                "speed": 225,
+                "spawnLimit": 8,
+                "spawnRate": 1300
+            },
+            "response": "CI/CD refere-se à Integração e Entrega ________.",
+            "responseWord": ["continuas"],
+            "introConfig": {
+                "title": "DevOps CI/CD",
+                "description": "Automatizando o fluxo.",
+                "question": "O que significa o C em CI/CD?"
+            }
+        },
+        {
+            "key": "Level20",
+            "wordList": [
+                "hexagonal",
+                "portas",
+                "adaptadores",
+                "camada",
+                "externo",
+                "infraestrutura"
+            ],
+            "enemyConfig": {
+                "speed": 310,
+                "spawnLimit": 10,
+                "spawnRate": 900
+            },
+            "response": "A Arquitetura Hexagonal (Ports & Adapters) visa isolar o ________ da aplicação.",
+            "responseWord": ["dominio"],
+            "introConfig": {
+                "title": "Arquitetura Limpa",
+                "description": "Protegendo a regra de negócio.",
+                "question": "O que deve ficar isolado no centro?"
+            }
+        },
+        {
+            "key": "Level21",
             "wordList": [
                 "arquitetura",
-                "componente",
-                "modularidade",
+                "software",
+                "microsservicos",
+                "objetos",
+                "relacoes",
+                "sistema"
+            ],
+            "enemyConfig": {
+                "speed": 80,
+                "spawnLimit": 3,
+                "spawnRate": 3000
+            },
+            "response": "A arquitetura de software define a ________ geral do sistema e seus ________ principais.",
+            "responseWord": ["estrutura", "componentes"],
+            "introConfig": {
+                "title": "Arquitetura de Software",
+                "description": "Visao macro do sistema.",
+                "question": "O que define a arquitetura de software?"
+            }
+        },
+        {
+            "key": "Level22",
+            "wordList": [
+                "camadas",
+                "apresentacao",
+                "negocio",
+                "dados",
+                "busca",
+                "importancia"
+            ],
+            "enemyConfig": {
+                "speed": 90,
+                "spawnLimit": 4,
+                "spawnRate": 2800
+            },
+            "response": "A arquitetura em camadas promove a ________ de ________.",
+            "responseWord": ["separacao", "responsabilidades"],
+            "introConfig": {
+                "title": "Arquitetura em Camadas",
+                "description": "Organiza o sistema em niveis bem definidos.",
+                "question": "Qual o principal objetivo da arquitetura em camadas?"
+            }
+        },
+        {
+            "key": "Level23",
+            "wordList": [
+                "relacionamento",
+                "atributo",
+                "tabela",
+                "modelo",
+                "conceitual"
+            ],
+            "enemyConfig": {
+                "speed": 100,
+                "spawnLimit": 4,
+                "spawnRate": 2600
+            },
+            "response": "No modelo entidade-relacionamento, uma ________ representa um objeto do mundo real.",
+            "responseWord": ["entidade"],
+            "introConfig": {
+                "title": "Modelagem de Dados",
+                "description": "Base conceitual do banco de dados.",
+                "question": "O que representa uma entidade no MER?"
+            }
+        },
+        {
+            "key": "Level24",
+            "wordList": [
+                "chave",
+                "primaria",
+                "secundaria",
+                "integridade",
+                "diferencial",
+                "relacao"
+            ],
+            "enemyConfig": {
+                "speed": 110,
+                "spawnLimit": 5,
+                "spawnRate": 2400
+            },
+            "response": "A chave ________ garante a integridade ________ entre tabelas.",
+            "responseWord": ["estrangeira", "referencial"],
+            "introConfig": {
+                "title": "Chaves em Banco de Dados",
+                "description": "Mantendo consistencia dos dados.",
+                "question": "Qual o papel da chave estrangeira?"
+            }
+        },
+        {
+            "key": "Level25",
+            "wordList": [
+                "normalizacao",
+                "anomalia",
+                "dependencia",
+                "tabelas",
+                "consistencia"
+            ],
+            "enemyConfig": {
+                "speed": 130,
+                "spawnLimit": 5,
+                "spawnRate": 2200
+            },
+            "response": "A normalizacao reduz a ________ de ________ no banco.",
+            "responseWord": ["redundancia", "dados"],
+            "introConfig": {
+                "title": "Normalizacao",
+                "description": "Organizacao eficiente do banco de dados.",
+                "question": "Qual o principal beneficio da normalizacao?"
+            }
+        },
+        {
+            "key": "Level26",
+            "wordList": [
+                "padrao",
+                "projeto",
+                "identificacao",
+                "coerencia",
+                "problema",
+                "design"
+            ],
+            "enemyConfig": {
+                "speed": 150,
+                "spawnLimit": 6,
+                "spawnRate": 2000
+            },
+            "response": "Um padrao de projeto e uma ________ reutilizavel para um problema ________.",
+            "responseWord": ["solucao", "recorrente"],
+            "introConfig": {
+                "title": "Padroes de Software",
+                "description": "Boas praticas de design.",
+                "question": "O que define um padrao de projeto?"
+            }
+        },
+        {
+            "key": "Level27",
+            "wordList": [
+                "singleton",
+                "bridge",
+                "controle",
+                "criacional",
+                "interface",
+                "objeto"
+            ],
+            "enemyConfig": {
+                "speed": 180,
+                "spawnLimit": 6,
+                "spawnRate": 1800
+            },
+            "response": "O padrao Singleton garante uma unica ________ de uma ________.",
+            "responseWord": ["instancia", "classe"],
+            "introConfig": {
+                "title": "Singleton",
+                "description": "Controle de instanciacao.",
+                "question": "Qual o objetivo do padrao Singleton?"
+            }
+        },
+        {
+            "key": "Level28",
+            "wordList": [
+                "mvc",
+                "entidade",
+                "https",
+                "controlador",
+                "separacao",
+                "camadas"
+            ],
+            "enemyConfig": {
+                "speed": 200,
+                "spawnLimit": 7,
+                "spawnRate": 1600
+            },
+            "response": "O padrao MVC separa o sistema em ________, ________ e controlador.",
+            "responseWord": ["modelo", "visao"],
+            "introConfig": {
+                "title": "MVC",
+                "description": "Arquitetura para aplicacoes interativas.",
+                "question": "Quais sao os componentes do MVC?"
+            }
+        },
+        {
+            "key": "Level29",
+            "wordList": [
                 "acoplamento",
-                "coesao",
-                "padrao"
+                "coerencia",
+                "medio",
+                "alto",
+                "manutencao",
+                "qualidade"
+            ],
+            "enemyConfig": {
+                "speed": 230,
+                "spawnLimit": 8,
+                "spawnRate": 1400
+            },
+            "response": "Uma boa arquitetura busca ________ acoplamento e alta ________.",
+            "responseWord": ["baixo", "coesao"],
+            "introConfig": {
+                "title": "Qualidade Arquitetural",
+                "description": "Principios fundamentais.",
+                "question": "Quais caracteristicas indicam uma boa arquitetura?"
+            }
+        },
+        {
+            "key": "Level30",
+            "wordList": [
+                "monolito",
+                "desempenho",
+                "seguranca",
+                "ajustabilidade",
+                "arquitetura",
+                "decisoes"
             ],
             "enemyConfig": {
                 "speed": 300,
                 "spawnLimit": 10,
-                "spawnRate": 800
+                "spawnRate": 1000
             },
-            "response": "Uma boa arquitetura promove ________ e minimiza o ________.",
-            "responseWord": ["manutencao", "acoplamento"],
+            "response": "Decisoes arquiteturais impactam diretamente a ________ e a ________ do sistema.",
+            "responseWord": ["escalabilidade", "manutencao"],
             "introConfig": {
-                "title": "NIVEL FINAL - ARQUITETURA",
-                "description": "Demonstre seu conhecimento!",
-                "question": "Teste final - Arquitetura de Software"
+                "title": "Arquitetura Avancada",
+                "description": "Desafio completo de Engenharia de Software.",
+                "question": "Quais impactos as decisoes arquiteturais geram no sistema?"
+            }
+        },
+        {
+            "key": "Level31",
+            "wordList": [
+                "monolitica",
+                "microservicos",
+                "distribuida",
+                "arquitetura",
+                "sistema"
+            ],
+            "enemyConfig": {
+                "speed": 90,
+                "spawnLimit": 3,
+                "spawnRate": 3000
+            },
+            "response": "A arquitetura de microservicos divide o sistema em ________ independentes.",
+            "responseWord": ["componentes"],
+            "introConfig": {
+                "title": "Microservicos",
+                "description": "Arquitetura moderna e distribuida.",
+                "question": "Qual a principal caracteristica dos microservicos?"
+            }
+        },
+        {
+            "key": "Level32",
+            "wordList": [
+                "api",
+                "rest",
+                "websocket",
+                "recursos",
+                "comunicacao",
+                "microservicos"
+            ],
+            "enemyConfig": {
+                "speed": 100,
+                "spawnLimit": 4,
+                "spawnRate": 2800
+            },
+            "response": "APIs REST utilizam o protocolo ________ para comunicacao entre ________.",
+            "responseWord": ["http", "servicos"],
+            "introConfig": {
+                "title": "APIs REST",
+                "description": "Base da integracao entre sistemas.",
+                "question": "Como ocorre a comunicacao em APIs REST?"
+            }
+        },
+        {
+            "key": "Level33",
+            "wordList": [
+                "orm",
+                "objeto",
+                "relacional",
+                "react",
+                "vetorial",
+                "classes"
+            ],
+            "enemyConfig": {
+                "speed": 110,
+                "spawnLimit": 4,
+                "spawnRate": 2600
+            },
+            "response": "ORM faz o ________ entre classes e ________ do banco.",
+            "responseWord": ["mapeamento", "tabelas"],
+            "introConfig": {
+                "title": "ORM",
+                "description": "Integra codigo orientado a objetos com banco de dados.",
+                "question": "Qual o papel de um ORM?"
+            }
+        },
+        {
+            "key": "Level34",
+            "wordList": [
+                "indice",
+                "query",
+                "escalabilidade",
+                "banco",
+                "dados",
+                "otimizacao"
+            ],
+            "enemyConfig": {
+                "speed": 120,
+                "spawnLimit": 5,
+                "spawnRate": 2400
+            },
+            "response": "Indices melhoram o ________ de ________ no banco de dados.",
+            "responseWord": ["desempenho", "consulta"],
+            "introConfig": {
+                "title": "Indices",
+                "description": "Otimizacao de acesso aos dados.",
+                "question": "Para que servem os indices em banco de dados?"
+            }
+        },
+        {
+            "key": "Level35",
+            "wordList": [
+                "cache",
+                "memoria",
+                "thread",
+                "seguranca",
+                "dados",
+                "acesso"
+            ],
+            "enemyConfig": {
+                "speed": 140,
+                "spawnLimit": 5,
+                "spawnRate": 2200
+            },
+            "response": "O uso de cache reduz a ________ e melhora o ________.",
+            "responseWord": ["latencia", "desempenho"],
+            "introConfig": {
+                "title": "Cache",
+                "description": "Performance e eficiencia.",
+                "question": "Qual o beneficio do uso de cache?"
+            }
+        },
+        {
+            "key": "Level36",
+            "wordList": [
+                "seguranca",
+                "autenticacao",
+                "dados",
+                "acesso",
+                "controle"
+            ],
+            "enemyConfig": {
+                "speed": 160,
+                "spawnLimit": 6,
+                "spawnRate": 2000
+            },
+            "response": "A autenticacao verifica a identidade e a ________ controla o acesso.",
+            "responseWord": ["autorizacao"],
+            "introConfig": {
+                "title": "Seguranca",
+                "description": "Protecao do sistema.",
+                "question": "Qual a diferenca entre autenticacao e autorizacao?"
+            }
+        },
+        {
+            "key": "Level37",
+            "wordList": [
+                "eventos",
+                "mensageria",
+                "sistema",
+                "comunicacao",
+                "fila"
+            ],
+            "enemyConfig": {
+                "speed": 180,
+                "spawnLimit": 6,
+                "spawnRate": 1800
+            },
+            "response": "Arquiteturas orientadas a eventos utilizam comunicacao ________.",
+            "responseWord": ["assincrona"],
+            "introConfig": {
+                "title": "Arquitetura Orientada a Eventos",
+                "description": "Alta escalabilidade.",
+                "question": "Como funciona a comunicacao em arquiteturas orientadas a eventos?"
+            }
+        },
+        {
+            "key": "Level38",
+            "wordList": [
+                "logs",
+                "versionamento",
+                "observabilidade",
+                "erros",
+                "sistema",
+                "diagnostico"
+            ],
+            "enemyConfig": {
+                "speed": 200,
+                "spawnLimit": 7,
+                "spawnRate": 1600
+            },
+            "response": "Logs auxiliam no ________ e no diagnostico de ________.",
+            "responseWord": ["monitoramento", "falhas"],
+            "introConfig": {
+                "title": "Observabilidade",
+                "description": "Entendendo o comportamento do sistema.",
+                "question": "Para que servem os logs em um sistema?"
+            }
+        },
+        {
+            "key": "Level39",
+            "wordList": [
+                "dependencias",
+                "inversao",
+                "controle",
+                "acoplamento",
+                "medio",
+                "manutencao"
+            ],
+            "enemyConfig": {
+                "speed": 230,
+                "spawnLimit": 8,
+                "spawnRate": 1400
+            },
+            "response": "A inversao de controle promove ________ acoplamento entre dependencias.",
+            "responseWord": ["baixo"],
+            "introConfig": {
+                "title": "Inversao de Controle",
+                "description": "Principio de design.",
+                "question": "Qual o beneficio da inversao de controle?"
+            }
+        },
+        {
+            "key": "Level40",
+            "wordList": [
+                "trocas",
+                "arquitetura",
+                "decisoes",
+                "desempenho",
+                "qualidade",
+                "sistema"
+            ],
+            "enemyConfig": {
+                "speed": 320,
+                "spawnLimit": 10,
+                "spawnRate": 1000
+            },
+            "response": "Decisoes de arquitetura envolvem ________ entre qualidade e ________.",
+            "responseWord": ["tradeoffs", "complexidade"],
+            "introConfig": {
+                "title": "Decisoes Arquiteturais",
+                "description": "Pensamento critico em Engenharia de Software.",
+                "question": "O que envolve a tomada de decisoes arquiteturais?"
             }
         }
     ]
