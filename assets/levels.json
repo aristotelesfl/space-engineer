@@ -12,7 +12,7 @@
             ],
             "enemyConfig": {
                 "speed": 60,
-                "spawnLimit": 2,
+                "spawnLimit": 3,
                 "spawnRate": 3000
             },
             "response": "A arquitetura define a ________ fundamental de um sistema de software.",
@@ -34,7 +34,7 @@
                 "tabela"
             ],
             "enemyConfig": {
-                "speed": 70,
+                "speed": 60,
                 "spawnLimit": 3,
                 "spawnRate": 3000
             },
@@ -57,9 +57,9 @@
                 "normal"
             ],
             "enemyConfig": {
-                "speed": 80,
+                "speed": 65,
                 "spawnLimit": 3,
-                "spawnRate": 3000
+                "spawnRate": 2900
             },
             "response": "A normalização visa minimizar a ________ de dados no banco.",
             "responseWord": ["redundancia"],
@@ -80,9 +80,9 @@
                 "separacao"
             ],
             "enemyConfig": {
-                "speed": 80,
-                "spawnLimit": 4,
-                "spawnRate": 2400
+                "speed": 65,
+                "spawnLimit": 3,
+                "spawnRate": 2700
             },
             "response": "No padrão MVC, a ________ exibe os dados ao usuário.",
             "responseWord": ["view"],
@@ -103,9 +103,9 @@
                 "comunicacao"
             ],
             "enemyConfig": {
-                "speed": 80,
-                "spawnLimit": 5,
-                "spawnRate": 2800
+                "speed": 70,
+                "spawnLimit": 4,
+                "spawnRate": 2700
             },
             "response": "Microserviços são serviços pequenos e ________.",
             "responseWord": ["independentes"],
@@ -126,9 +126,9 @@
                 "objeto"
             ],
             "enemyConfig": {
-                "speed": 80,
-                "spawnLimit": 5,
-                "spawnRate": 2600
+                "speed": 70,
+                "spawnLimit": 4,
+                "spawnRate": 2700
             },
             "response": "O padrão Singleton garante apenas uma ________ de uma classe.",
             "responseWord": ["instancia"],
@@ -149,9 +149,9 @@
                 "comportamental"
             ],
             "enemyConfig": {
-                "speed": 85,
-                "spawnLimit": 5,
-                "spawnRate": 2600
+                "speed": 70,
+                "spawnLimit": 4,
+                "spawnRate": 2500
             },
             "response": "O Observer notifica objetos sobre mudanças de ________.",
             "responseWord": ["estado"],
@@ -173,8 +173,8 @@
                 "inversao"
             ],
             "enemyConfig": {
-                "speed": 85,
-                "spawnLimit": 5,
+                "speed": 75,
+                "spawnLimit": 4,
                 "spawnRate": 2600
             },
             "response": "Em SOLID, 'S' é Responsabilidade ________.",
@@ -196,9 +196,9 @@
                 "verbo"
             ],
             "enemyConfig": {
-                "speed": 100,
-                "spawnLimit": 5,
-                "spawnRate": 2500
+                "speed": 75,
+                "spawnLimit": 4,
+                "spawnRate": 2400
             },
             "response": "APIs RESTful utilizam métodos do protocolo ________.",
             "responseWord": ["http"],
@@ -219,9 +219,9 @@
                 "complexidade"
             ],
             "enemyConfig": {
-                "speed": 100,
-                "spawnLimit": 6,
-                "spawnRate": 2500
+                "speed": 80,
+                "spawnLimit": 4,
+                "spawnRate": 2400
             },
             "response": "Busca-se alta coesão e baixo ________.",
             "responseWord": ["acoplamento"],
@@ -242,9 +242,9 @@
                 "escolha"
             ],
             "enemyConfig": {
-                "speed": 85,
-                "spawnLimit": 3,
-                "spawnRate": 2900
+                "speed": 80,
+                "spawnLimit": 4,
+                "spawnRate": 2400
             },
             "response": "O Teorema CAP diz que é impossível ter Consistência, Disponibilidade e Tolerância a ________ simultaneamente.",
             "responseWord": ["particao"],
@@ -266,9 +266,9 @@
                 "integridade"
             ],
             "enemyConfig": {
-                "speed": 95,
+                "speed": 80,
                 "spawnLimit": 4,
-                "spawnRate": 2700
+                "spawnRate": 2400
             },
             "response": "As propriedades ACID garantem a confiabilidade das ________ no banco de dados.",
             "responseWord": ["transacoes"],
@@ -289,9 +289,9 @@
                 "expansao"
             ],
             "enemyConfig": {
-                "speed": 105,
+                "speed": 80,
                 "spawnLimit": 4,
-                "spawnRate": 2500
+                "spawnRate": 2300
             },
             "response": "Escalabilidade ________ envolve adicionar mais potência (CPU/RAM) a uma única máquina.",
             "responseWord": ["vertical"],
@@ -313,9 +313,9 @@
                 "runtime"
             ],
             "enemyConfig": {
-                "speed": 115,
-                "spawnLimit": 5,
-                "spawnRate": 2300
+                "speed": 85,
+                "spawnLimit": 4,
+                "spawnRate": 2400
             },
             "response": "O padrão Strategy permite que uma família de ________ seja intercambiável.",
             "responseWord": ["algoritmos"],
@@ -336,9 +336,9 @@
                 "abstrato"
             ],
             "enemyConfig": {
-                "speed": 125,
-                "spawnLimit": 5,
-                "spawnRate": 2100
+                "speed": 85,
+                "spawnLimit": 4,
+                "spawnRate": 2400
             },
             "response": "O Factory Method delega a ________ de objetos para as subclasses.",
             "responseWord": ["criacao"],
@@ -359,9 +359,9 @@
                 "backend"
             ],
             "enemyConfig": {
-                "speed": 145,
-                "spawnLimit": 6,
-                "spawnRate": 1900
+                "speed": 85,
+                "spawnLimit": 5,
+                "spawnRate": 2000
             },
             "response": "O API Gateway funciona como um ponto de ________ único para os clientes.",
             "responseWord": ["entrada"],
@@ -382,9 +382,9 @@
                 "kernel"
             ],
             "enemyConfig": {
-                "speed": 165,
-                "spawnLimit": 6,
-                "spawnRate": 1700
+                "speed": 90,
+                "spawnLimit": 5,
+                "spawnRate": 2000
             },
             "response": "Containers empacotam código e dependências para garantir a ________.",
             "responseWord": ["portabilidade"],
@@ -405,9 +405,9 @@
                 "temporario"
             ],
             "enemyConfig": {
-                "speed": 185,
-                "spawnLimit": 7,
-                "spawnRate": 1500
+                "speed": 90,
+                "spawnLimit": 5,
+                "spawnRate": 2000
             },
             "response": "O uso de cache visa reduzir a ________ no acesso aos dados frequentes.",
             "responseWord": ["latencia"],
@@ -429,9 +429,9 @@
                 "continuo"
             ],
             "enemyConfig": {
-                "speed": 225,
-                "spawnLimit": 8,
-                "spawnRate": 1300
+                "speed": 70,
+                "spawnLimit": 6,
+                "spawnRate": 2500
             },
             "response": "CI/CD refere-se à Integração e Entrega ________.",
             "responseWord": ["continuas"],
@@ -452,9 +452,9 @@
                 "infraestrutura"
             ],
             "enemyConfig": {
-                "speed": 310,
-                "spawnLimit": 10,
-                "spawnRate": 900
+                "speed": 75,
+                "spawnLimit": 6,
+                "spawnRate": 2400
             },
             "response": "A Arquitetura Hexagonal (Ports & Adapters) visa isolar o ________ da aplicação.",
             "responseWord": ["dominio"],
@@ -476,8 +476,8 @@
             ],
             "enemyConfig": {
                 "speed": 80,
-                "spawnLimit": 3,
-                "spawnRate": 3000
+                "spawnLimit": 6,
+                "spawnRate": 2400
             },
             "response": "A arquitetura de software define a ________ geral do sistema e seus ________ principais.",
             "responseWord": ["estrutura", "componentes"],
@@ -520,8 +520,8 @@
                 "conceitual"
             ],
             "enemyConfig": {
-                "speed": 100,
-                "spawnLimit": 4,
+                "speed": 95,
+                "spawnLimit": 6,
                 "spawnRate": 2600
             },
             "response": "No modelo entidade-relacionamento, uma ________ representa um objeto do mundo real.",
@@ -543,9 +543,9 @@
                 "relacao"
             ],
             "enemyConfig": {
-                "speed": 110,
-                "spawnLimit": 5,
-                "spawnRate": 2400
+                "speed": 95,
+                "spawnLimit": 6,
+                "spawnRate": 2300
             },
             "response": "A chave ________ garante a integridade ________ entre tabelas.",
             "responseWord": ["estrangeira", "referencial"],
@@ -565,7 +565,7 @@
                 "consistencia"
             ],
             "enemyConfig": {
-                "speed": 130,
+                "speed": 100,
                 "spawnLimit": 5,
                 "spawnRate": 2200
             },
@@ -588,9 +588,9 @@
                 "design"
             ],
             "enemyConfig": {
-                "speed": 150,
-                "spawnLimit": 6,
-                "spawnRate": 2000
+                "speed": 120,
+                "spawnLimit": 4,
+                "spawnRate": 2300
             },
             "response": "Um padrao de projeto e uma ________ reutilizavel para um problema ________.",
             "responseWord": ["solucao", "recorrente"],
@@ -611,8 +611,8 @@
                 "objeto"
             ],
             "enemyConfig": {
-                "speed": 180,
-                "spawnLimit": 6,
+                "speed": 120,
+                "spawnLimit": 4,
                 "spawnRate": 1800
             },
             "response": "O padrao Singleton garante uma unica ________ de uma ________.",
@@ -634,9 +634,9 @@
                 "camadas"
             ],
             "enemyConfig": {
-                "speed": 200,
-                "spawnLimit": 7,
-                "spawnRate": 1600
+                "speed": 120,
+                "spawnLimit": 6,
+                "spawnRate": 2600
             },
             "response": "O padrao MVC separa o sistema em ________, ________ e controlador.",
             "responseWord": ["modelo", "visao"],
@@ -657,9 +657,9 @@
                 "qualidade"
             ],
             "enemyConfig": {
-                "speed": 230,
-                "spawnLimit": 8,
-                "spawnRate": 1400
+                "speed": 110,
+                "spawnLimit": 6,
+                "spawnRate": 2000
             },
             "response": "Uma boa arquitetura busca ________ acoplamento e alta ________.",
             "responseWord": ["baixo", "coesao"],
@@ -680,9 +680,9 @@
                 "decisoes"
             ],
             "enemyConfig": {
-                "speed": 300,
-                "spawnLimit": 10,
-                "spawnRate": 1000
+                "speed": 100,
+                "spawnLimit": 6,
+                "spawnRate": 1500
             },
             "response": "Decisoes arquiteturais impactam diretamente a ________ e a ________ do sistema.",
             "responseWord": ["escalabilidade", "manutencao"],
@@ -702,9 +702,9 @@
                 "sistema"
             ],
             "enemyConfig": {
-                "speed": 90,
-                "spawnLimit": 3,
-                "spawnRate": 3000
+                "speed": 75,
+                "spawnLimit": 5,
+                "spawnRate": 2500
             },
             "response": "A arquitetura de microservicos divide o sistema em ________ independentes.",
             "responseWord": ["componentes"],
@@ -725,7 +725,7 @@
                 "microservicos"
             ],
             "enemyConfig": {
-                "speed": 100,
+                "speed": 150,
                 "spawnLimit": 4,
                 "spawnRate": 2800
             },
@@ -748,8 +748,8 @@
                 "classes"
             ],
             "enemyConfig": {
-                "speed": 110,
-                "spawnLimit": 4,
+                "speed": 130,
+                "spawnLimit": 6,
                 "spawnRate": 2600
             },
             "response": "ORM faz o ________ entre classes e ________ do banco.",
@@ -771,9 +771,9 @@
                 "otimizacao"
             ],
             "enemyConfig": {
-                "speed": 120,
-                "spawnLimit": 5,
-                "spawnRate": 2400
+                "speed": 150,
+                "spawnLimit": 4,
+                "spawnRate": 2300
             },
             "response": "Indices melhoram o ________ de ________ no banco de dados.",
             "responseWord": ["desempenho", "consulta"],
@@ -816,9 +816,9 @@
                 "controle"
             ],
             "enemyConfig": {
-                "speed": 160,
-                "spawnLimit": 6,
-                "spawnRate": 2000
+                "speed": 130,
+                "spawnLimit": 5,
+                "spawnRate": 1800
             },
             "response": "A autenticacao verifica a identidade e a ________ controla o acesso.",
             "responseWord": ["autorizacao"],
@@ -838,7 +838,7 @@
                 "fila"
             ],
             "enemyConfig": {
-                "speed": 180,
+                "speed": 135,
                 "spawnLimit": 6,
                 "spawnRate": 1800
             },
@@ -861,8 +861,8 @@
                 "diagnostico"
             ],
             "enemyConfig": {
-                "speed": 200,
-                "spawnLimit": 7,
+                "speed": 135,
+                "spawnLimit": 5,
                 "spawnRate": 1600
             },
             "response": "Logs auxiliam no ________ e no diagnostico de ________.",
